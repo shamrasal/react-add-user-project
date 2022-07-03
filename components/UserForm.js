@@ -49,7 +49,7 @@ const UserForm = (props) => {
     }
 
     return (
-        <React.Fragment>
+        <div>
             {invalid && <ErorModel title={invalid.title} message={invalid.message} onConfirm={cancelHandler} />}
             <Card className={classes.input}>
                 <form onSubmit={getInputValue}>
@@ -70,7 +70,7 @@ const UserForm = (props) => {
                     <Button type='submit'>Add User</Button>
                 </form>
             </Card>
-        </React.Fragment>
+        </div>
     )
 }
 export default UserForm

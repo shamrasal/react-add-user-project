@@ -2,7 +2,7 @@ import './Button.css'
 
 const Button = (props) => {
     return (
-        <>
+        <div>
             <button
                 className='button'
                 type={props.type || 'button'}
@@ -10,7 +10,7 @@ const Button = (props) => {
             >
                 {props.children}
             </button>
-        </>
+        </div>
     )
 }
 

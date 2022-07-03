@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 import classes from './UserForm.module.css'
 import Button from './UI/Button';
@@ -9,6 +9,7 @@ const UserForm = (props) => {
     const [EnteredUser, setEnteredUser] = useState('');
     const [EnteredAge, setEnteredAge] = useState('');
     const [invalid, setInvalid] = useState();
+    const collageNameRef = useRef()
 
     const textChangeHandler = (event) => {
         setEnteredUser(event.target.value)
@@ -18,13 +19,15 @@ const UserForm = (props) => {
     }
 
     const getInputValue = (event) => {
+        const enteredCollage = collageNameRef.current.value
         event.preventDefault()
         const inputData = {
             id: Math.random().toString(),
             name: EnteredUser,
-            age: EnteredAge
+            age: EnteredAge,
+            collageName: enteredCollage
         }
-        if (EnteredUser.trim().length === 0 || EnteredAge.trim().length === 0) {
+        if (EnteredUser.trim().length === 0 || EnteredAge.trim().length === 0 || enteredCollage.trim().length === 0) {
             setInvalid({
                 title: 'invalid input',
                 message: 'please enter valid input details'
@@ -67,10 +70,16 @@ const UserForm = (props) => {
                         value={EnteredAge}
                         onChange={ageChangeHandler}>
                     </input>
+                    <label>collage Name</label>
+                    <input
+                        id='collageName'
+                        type='text'
+                        ref={collageNameRef}>
+                    </input>
                     <Button type='submit'>Add User</Button>
                 </form>
             </Card>
-        </div>
+        </div >
     )
 }
 export default UserForm
